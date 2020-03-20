@@ -1,6 +1,6 @@
 # my-project
 
-> ujian行业市场店铺加强版mpvue项目
+> mpvue生成小程序和web的初始开发模板
 
 ## Build Setup
 
