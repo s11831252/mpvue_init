@@ -26,18 +26,17 @@ var routes = [
 let router =new Router({routes:routes})
 //路由跳转检查检查
 router.beforeEach((to, from, next) => {
-    if (!to.matched.some(record => record.meta.noAuth)) {
-        //这里判断用户是否登录，验证store中的token是否已登录
-        if (!store.getters.Logined) { // 判断当前的token是否存在
-            next({
-                path: '/pages/index/index',
-                query: { redirect: to.fullPath }
-            })
-        } else {
-            next()
-        }
-    } else {
-        next() // 确保一定要调用 next()
-    }
+    //这里可以判断登录、验证等业务
+    // if (!to.matched.some(record => record.meta.noAuth)) {
+    //     
+    //     if (false) { // 判断当前的token是否存在
+
+    //     } else {
+    //         next()
+    //     }
+    // } else {
+        next()
+    // }
+    next() // 确保一定要调用 next()
   })
 export default router
