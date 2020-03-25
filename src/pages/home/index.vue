@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <form>
+    <div class="form">
       <div class="form-line">
         <span class="red">*</span>
         <label>1. 公司名称：</label>
@@ -41,7 +41,7 @@
           <button v-if="!body.subsidy"  @click="post">提交</button>
           <button v-else @click="reset">重新填写</button>
       </div>
-    </form>
+    </div>
   </div>
 </template>
 
@@ -114,7 +114,7 @@ export default {
   font-size: 0.45rem;
   padding: 0.5rem;
   color: #494949;
-  form {
+  .form {
     .form-line {
       margin-bottom: 1.3rem;
       span.red {
@@ -133,7 +133,7 @@ export default {
         font-size: 0.4rem;
         color: #0a0a0a;
         display: inline-block;
-        width: auto;
+        width: 90%;;
       }
       select {
         border: 0;
