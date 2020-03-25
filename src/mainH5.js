@@ -12,8 +12,9 @@ import VueAwesomeSwiper from 'vue-awesome-swiper'
 let { swiper, swiperSlide } = VueAwesomeSwiper
 
 import "swiper/dist/css/swiper.css";
+import XiaoguiAPI from './api/XIaoguiAPI'
 Vue.use(Toast);
-
+Vue.prototype.$XiaoguiAPI = XiaoguiAPI //在实例中用调用封装的RestAPI
 Vue.mixin({
   components: {
     swiper,

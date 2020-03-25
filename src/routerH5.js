@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import home from './pages/home/index'
+import list from './pages/home/list'
 
 
 import store from './store'
@@ -20,6 +21,17 @@ var routes = [
         },
         alias: '/pages/home/index',
         component: home
+    },
+    {
+        path: 'pages/home/list',
+        name: 'home',
+        config: {
+            navigationBarTitleText: '列表',
+            enablePullDownRefresh: true,
+            EnableNav:true,
+        },
+        alias: '/pages/home/list',
+        component: list
     }
 ]
 
