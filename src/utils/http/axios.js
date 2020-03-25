@@ -48,8 +48,6 @@ export default {
           method: 'get',
           headers:{
             'X-Requested-With': 'XMLHttpRequest',
-            'Device':"WebApp",
-            'SingleTicket':store.state.User.SingleTicket
           },
           url,
           params: param,
@@ -69,8 +67,6 @@ export default {
           method: 'post',
           headers:{
             'X-Requested-With': 'XMLHttpRequest',
-            'Device':"WebApp",
-            'SingleTicket':store.state.User.SingleTicket
           },
           url,
           data: param,
