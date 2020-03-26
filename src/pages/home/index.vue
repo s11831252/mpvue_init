@@ -200,7 +200,7 @@ export default {
       font-size: 0.4rem;
       background-color: #fff;
       .red{
-        font-size:0.45rem;
+        font-size:0.6rem;
       }
       p{
           margin-bottom: 0.3rem;
