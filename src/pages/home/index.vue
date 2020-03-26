@@ -3,7 +3,7 @@
     <div class="form">
       <div class="form-line">
         <span class="red">*</span>
-        <label>1. 公司名称：</label>
+        <label>公司名称：</label>
         <div class="inputbox">
           <i class="icon">&#xe600;</i>
           <input placeholder="请输入您的公司名称" v-model="body.corpName" />
@@ -11,7 +11,7 @@
       </div>
       <div class="form-line">
         <span class="red">*</span>
-        <label>2. 手机号码：</label>
+        <label>手机号码：</label>
         <div class="inputbox">
           <i class="icon">&#xe638;</i>
           <input maxlength="11" type="number" placeholder="请输入您的手机号码" v-model="body.phone"  />
@@ -19,7 +19,7 @@
       </div>
       <div class="form-line inline-box">
         <span class="red">*</span>
-        <label>4. 请填写：</label>
+        <label>请填写：</label>
         <div class="inputbox">
           <label>2019年员工总数：</label>
           <input maxlength="100000" type="number" placeholder="员工总人数" v-model.number="body.total" />
@@ -34,13 +34,19 @@
               <option v-for="(item,index) in fdArr" :key="index" :value="index">{{item}}</option>
           </select>
         </div>
-        <p v-if="body.subsidy">贵公司可能获得的社保补贴一共：<span class="red">{{body.subsidy}}</span>元</p>
+        <div class="result" v-if="body.subsidy">
+          <p>贵公司可能获得的社保补贴预计：</p>
+          <div><span class="red">{{body.subsidy}}</span>元</div>
+        </div>
 
       </div>
       <div class="form-line">
           <button v-if="!body.subsidy"  @click="post">提交</button>
           <button v-else @click="reset">重新填写</button>
       </div>
+    </div>
+    <div class="banner">
+      <img src="">
     </div>
   </div>
 </template>
@@ -52,8 +58,8 @@ export default {
       body:{
         corpName:"",
         phone:"",
-        total:0,
-        newTotal:0,
+        total:"",
+        newTotal:"",
         fd:0,
         fdInfo:"",
         subsidy:0
@@ -80,7 +86,7 @@ export default {
         this.toast("请输入员工总数")
         return
       }
-      if(!this.body.newTotal)
+      if(!this.myIsNaN(this.body.newTotal)||this.body.newTotal<0)
       {
         this.toast("请输入新员工数")
         return
@@ -105,6 +111,10 @@ export default {
     },
     reset(){
       Object.assign(this.$data, this.$options.data())
+    },
+    // true:数值型的，false：非数值型
+    myIsNaN(value) {
+      return typeof value === 'number' && !isNaN(value);
     }
   }
 };
@@ -116,15 +126,16 @@ export default {
   color: #494949;
   .form {
     .form-line {
-      margin-bottom: 1.3rem;
+      margin-bottom: .5rem;
       span.red {
         color: #ff304c;
+        margin-right: 0.3rem
       }
       label {
         font-weight: bold;
       }
       .inputbox {
-        margin-top: 0.5rem;
+        margin-top: 0.1rem;
         border: 0.02rem solid #dcdcdc;
         border-radius: 0.1rem;
         padding: 0.2rem;
@@ -152,29 +163,53 @@ export default {
     }
     .form-line.inline-box {
       background-color: #fafafa;
+      padding: 0.2rem 0;
+      margin-bottom: 0.2rem;
       .inputbox {
           display: flex;
           justify-content:space-between;
+          align-items:center;
+          border: none;
         label {
+          font-size: 0.4rem;
           font-weight: inherit;
           color: #494949;
-          padding: 0.2rem;
-          width: 35%;
+          padding: 0;
+          flex-grow:2;
+          // width: 35%;
         }
         input ,select{
           padding: 0 0 0 0.2rem;
           border: 0.02rem solid #dedede;
           border-radius: 0.1rem;
-          width: 65%;
+          // width: 65%;
           /* max-height: 0.7rem; */
           font-size: 0.4rem;
           height: 1rem;
+          flex-grow:1;
+          width:auto;
         }
       }
     }
-    p{
-          margin-top: 0.5rem;
+    .result{
+      text-align: center;
+      border: 0.02rem solid #dcdcdc;
+      border-radius: 0.1rem;
+      padding: 0.5rem;
+      margin: 0.3rem;
+      font-size: 0.4rem;
+      background-color: #fff;
+      .red{
+        font-size:0.45rem;
+      }
+      p{
+          margin-bottom: 0.3rem;
+      }
     }
+
+  }
+  .banner{
+    margin-top: 0.5;
   }
 }
 </style>
