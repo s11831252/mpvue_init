@@ -17,9 +17,6 @@ const net = {
         method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
         header: {
           'Content-Type': 'application/json',
-          'Device':"WebApp",
-          'DisplayVersion':"2.0.11",
-          'SingleTicket':store.state.User.SingleTicket
         }, // 设置请求的 header
         success: function (res) {
           // success
@@ -69,9 +66,6 @@ const net = {
         method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
         header: {
           'Content-Type': 'application/json',
-          'Device':"WebApp",
-          'DisplayVersion':"2.0.11",
-          'SingleTicket':store.state.User.SingleTicket
         }, // 设置请求的 header
         success: function (res) {
           // success
