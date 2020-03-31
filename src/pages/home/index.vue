@@ -1,5 +1,8 @@
 <template>
   <div class="container">
+    <div class="banner top">
+      <img src="../../../static/images/corp.png">
+    </div>
     <div class="form">
       <div class="form-line">
         <span class="red">*</span>
@@ -34,7 +37,7 @@
               <option v-for="(item,index) in fdArr" :key="index" :value="index">{{item}}</option>
           </select>
         </div>
-        <div class="result" v-if="body.subsidy">
+        <div id="result" class="result" v-show="body.subsidy">
           <p>贵公司可能获得的社保补贴预计：</p>
           <div><span class="red">{{body.subsidy}}</span>元</div>
         </div>
@@ -45,8 +48,16 @@
           <button v-else @click="reset">重新填写</button>
       </div>
     </div>
-    <div class="banner">
-      <img src="">
+    <div class="banner" v-show="body.subsidy">
+      <img src="../../../static/images/banner.png">
+    </div>
+    <div class="contact" v-show="body.subsidy">
+      <img src="../../../static/images/qr.jpg">
+      <span class="address">
+        <P>广西小桂人力资源服务有限公司</P>
+        <P>南宁市金浦路7号世纪商都大厦A座1005室</P>
+        <P>0771-5717180</P>
+      </span>
     </div>
   </div>
 </template>
@@ -106,8 +117,8 @@ export default {
       }
       this.body.fdInfo=this.fdArr[this.body.fd];
       this.body.subsidy=A+B+C;
-      console.log(this.body)
       this.$XiaoguiAPI.XiaoGui_post(this.body)
+      document.getElementById("result").scrollIntoView();
     },
     reset(){
       Object.assign(this.$data, this.$options.data())
@@ -122,9 +133,9 @@ export default {
 <style lang="less" scoped>
 .container {
   font-size: 0.45rem;
-  padding: 0.5rem;
   color: #494949;
   .form {
+    padding: 0.5rem;
     .form-line {
       margin-bottom: .5rem;
       span.red {
@@ -200,7 +211,8 @@ export default {
       font-size: 0.4rem;
       background-color: #fff;
       .red{
-        font-size:0.6rem;
+        font-size:0.7rem;
+        font-weight: bold;
       }
       p{
           margin-bottom: 0.3rem;
@@ -210,6 +222,32 @@ export default {
   }
   .banner{
     margin-top: 0.5;
+    text-align: center;
+    img{
+      width: 100%;
+    }
+  }
+  .banner.top
+  {
+    img{
+      width: 25%;
+    }
+    // background-color: #99c6ff;
+  }
+  .contact{
+    display: flex;
+    align-items:center;
+    img{
+      width: 3rem;
+      height: 3rem;
+    }
+    .address{
+      width: 75%;
+      font-size: 0.4rem;
+      p{
+        padding-bottom: 0.3rem;
+      }
+    }
   }
 }
 </style>
